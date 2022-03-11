@@ -2,7 +2,7 @@
   .promo {
     min-height: auto;
     padding: 10px 15px 20px 15px;
-    background: url(../img/main.jpg) center (center/cover) no-repeat fixed;
+    background: url("../img/main.jpg") center (center/cover) no-repeat fixed;
     &__wrapper {
       margin-top: 40px;
     }
@@ -55,6 +55,11 @@
       height: 15px;
       font-size: 9px;
     }
+    &_submit {
+      width: 150px;
+      height: 25px;
+      font-size: 8px;
+    }
   }
   .advantages {
     min-height: auto;
@@ -81,5 +86,30 @@
   }
   .title {
     font-size: 20px;
+    &_left {
+      font-size: 15px;
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  .consultation {
+    min-height: auto;
+    padding: 15px 15px;
+    background: url("../img/consultation.jpg") center (center/cover) no-repeat
+      fixed;
+    &__descr {
+      font-size: 10px;
+      text-align: center;
+    }
+  }
+  .feed-form {
+    margin-top: 110px;
+    width: 150px;
+    input {
+      height: 25px;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      font-size: 8px;
+    }
   }
 }
