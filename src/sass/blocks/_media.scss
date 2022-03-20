@@ -1,8 +1,8 @@
 @media (max-width: 575px) {
   .promo {
-    min-height: auto;
+    min-height: 400px;
     padding: 10px 15px 20px 15px;
-    background: url("../img/main.jpg") center (center/cover) no-repeat fixed;
+    background: url("../img/main.jpg") center (center/cover) no-repeat;
     &__wrapper {
       margin-top: 40px;
     }
@@ -48,12 +48,12 @@
   .button {
     width: 100px;
     height: 15px;
-    font-size: 9px;
+    font-size: 8px;
     &_main {
       margin-top: 20px;
       width: 135px;
       height: 15px;
-      font-size: 9px;
+      font-size: 8px;
     }
     &_submit {
       width: 150px;
@@ -102,9 +102,9 @@
     }
   }
   .consultation {
-    min-height: auto;
-    padding: 15px 15px;
-    background: url("../img/consultation.jpg") center (center/cover) no-repeat fixed;
+    min-height: 400px;
+    padding: 25px 15px;
+    background: url("../img/consultation.jpg") center (center/cover) no-repeat;
     &__descr {
       font-size: 10px;
       text-align: center;
