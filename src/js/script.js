@@ -1,10 +1,11 @@
 const slider = tns({
   container: ".carousel__inner",
-  items: 1,
+  items: 3,
   slideBy: "page",
   autoplay: false,
   controls: false,
   nav: false,
+  speed: 600,
   responsive: {
     320: {
       nav: true,
@@ -60,12 +61,17 @@ $(document).ready(function () {
   // Modal
 
   $("[data-modal=consultation]").on("click", function () {
+    // по дата атрибуту и событию клика на этот элемент -элементам со след классами и id задаем класс медленного появления
     $(".overlay, #consultation").fadeIn("slow");
   });
+
   $(".modal__close").on("click", function () {
+    // по дата атрибуту и событию клика на этот элемент -элементам со след классами и id задаем класс медленного исчезновения
     $(".overlay, #consultation, #order, #thanks").fadeOut("slow");
   });
+
   $(".button_mini").each(function (i) {
+    // для всех элементов с этим классом пишем функцию, которая получает аргумент порядкового индекса списка элементов - каждому элементу с этим классом по клику - у след элементов по id и классам в их текст вставляет текст из след элемента по классу и по индексу и медленно показывает при этом их на странице
     $(this).on("click", function () {
       $("#order .modal__descr").text($(".catalog-item__subtitle").eq(i).text());
       $(".overlay, #order").fadeIn("slow");
@@ -73,8 +79,10 @@ $(document).ready(function () {
   });
 
   function validateForms(form) {
+    //функция валидации форм
     $(form).validate({
       rules: {
+        // правила для инпутов из документации плагина 'jqueryvalidation', что в след инпутах по значениям их атрибутов name устанавливаем обязательные условия валидации - обязательные поля для ввода, минимальное количество симоволов, были ли введены конкретные данные(email).
         name: {
           required: true,
           minlength: 2,
@@ -86,22 +94,23 @@ $(document).ready(function () {
         },
       },
       messages: {
+        // настройка сообщений под инпутами для пользователя, для корректного ввода данных. Класс для стилизации этих сообщений находится в документацц под названием "ErrorClass" и он по умолчанию указан 'error', его можно использовать в своих стилях. Его можно менять - показано в документаци
         name: {
-          required: "Пожалуйста, укажите свое имя",
-          minlength: jQuery.validator.format("Необходимо не менее {0} символов!"),
+          required: "Укажите свое имя",
+          minlength: jQuery.validator.format("Необходимо не менее {0} символов!"), // структура сообщения из документации неизменна - нужна для связи значения минимального количества символов, которые мы указываем в правилах для этого поля
         },
-        phone: "Пожалуйста, укажите свой телефонный номер",
+        phone: "Укажите телефонный номер",
         email: {
-          required: "Нам необходим Ваш e-mail, чтобы связаться с Вами",
-          email: "Ваш e-mail должен быть указан в формате name@domain.com",
+          required: "Укажите почту",
+          email: "Формат почты name@domain.com",
         },
       },
     });
   }
 
-  validateForms("#consultation-form");
-  validateForms("#consultation form");
-  validateForms("#order form");
+  validateForms("#consultation-form"); // ищем элемент по id
+  validateForms("#consultation form"); // внутри элемента по id ищем элемент по классу
+  validateForms("#order form"); // тоже самое, внутри элемента по id ищем элемент по классу
 
   $("input[name=phone]").mask("+7 (999) 999-99-99");
 

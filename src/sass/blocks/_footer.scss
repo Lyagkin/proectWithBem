@@ -16,7 +16,7 @@
     transform: translateX(-50%);
     width: 460px;
     height: 270px;
-    background-color: $main-color;
+    background-color: var(--back-color);
     padding: 50px 69px 60px 69px;
   }
   &__addr {

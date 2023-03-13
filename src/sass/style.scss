@@ -1,16 +1,29 @@
 @import "libs/bootstrap-reboot.min";
 @import "libs/font";
-@import "libs//animate";
+@import "libs/animate";
+@import "libs//tiny-slider";
 @import "base/variables";
 @import "base/animations";
+
+:root {
+  --color-text: #ffffff;
+  --back-color: #89AC76;
+}
+
 * {
   font-family: "Museo Sans Cyrls", sans-serif;
 }
+
 .container {
   position: relative;
   max-width: 950px;
   margin: 0 auto;
 }
+
+ul {
+  list-style-type: none;
+}
+
 @import "blocks/promo";
 @import "blocks/header";
 @import "blocks/buttons";

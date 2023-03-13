@@ -2,15 +2,23 @@
   padding: 81px 0;
   &__inner {
     position: relative;
-    width: 750px;
+    width: 85%;
     margin: 0 auto;
+    &_item {
+      width: 50%;
+      img {
+        display: block;
+        margin: 0 auto;
+        max-width: 400px;
+      }
+    }
   }
   .prev,
   .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: -66px;
+    left: 0px;
     border: none;
     background-color: #ffffff;
     img {
@@ -19,13 +27,14 @@
     }
   }
   .next {
-    right: -66px;
+    right: 0px;
     left: auto;
   }
-  .tns-item {
-    img {
-      display: block;
-      margin: 0 auto;
-    }
-  }
+  // .tns-item {
+  //   img {
+  //     display: block;
+  //     margin: 0 auto;
+  //     max-width: 50%;
+  //   }
+  // }
 }

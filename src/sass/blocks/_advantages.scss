@@ -13,8 +13,12 @@
     align-items: center;
     max-width: 238px;
   }
+  &__icon {
+    width: 70px;
+    height: 65px;
+  }
   &__subtitle {
-    color: #0d0d0d;
+    color: var(--back-color);
     margin-top: 38px;
     font-size: 18px;
     font-weight: 700;
@@ -26,15 +30,8 @@
     font-weight: 300;
     text-align: center;
     a {
-      color: #ff0000;
-    }
-  }
-  &__icon {
-    &_animated {
-      animation: heartbeat 1.5s ease infinite;
-      &:hover {
-        animation-play-state: paused;
-      }
+      text-decoration: none;
+      color: var(--back-color);
     }
   }
 }

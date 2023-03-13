@@ -12,7 +12,7 @@
   &__tab {
     width: 220px;
     height: 50px;
-    border: 2px solid #d0d0d0;
+    // border: 1px solid #d0d0d0;
     color: #6b6b6b;
     font-size: 18px;
     font-weight: 500;
@@ -23,7 +23,7 @@
     margin: 0 5px;
     transition: 0.8s all;
     &:hover {
-      box-shadow: 5px 5px 40px $main-color;
+      box-shadow: 5px 5px 15px 0.1px rgba(0,0,0,0.2);
       border: none;
     }
     cursor: pointer;
@@ -32,7 +32,7 @@
     }
     &_active {
       color: #ffffff;
-      background-color: $main-color;
+      background-color: var(--back-color);
       border: none;
     }
   }
@@ -75,13 +75,13 @@
     &__link {
       display: block;
       margin-top: 17px;
-      color: $main-color;
+      color: var(--back-color);
       font-size: 14px;
       font-weight: 500;
       text-transform: uppercase;
       text-align: center;
       &:hover {
-        color: $main-color;
+        color: var(--back-color);
       }
     }
     hr {
@@ -142,16 +142,19 @@
       position: relative;
       color: #555555;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 300;
       margin-bottom: 20px;
       &:before {
         content: "";
         position: absolute;
         width: 5px;
         height: 5px;
-        background-color: $main-color;
+        background-color: var(--back-color);
         top: 7px;
         left: -14px;
+      }
+      &::marker {
+        display: none;
       }
     }
     &__back {
@@ -160,12 +163,12 @@
       left: 50%;
       transform: translateX(calc(-50% - 19px));
       display: block;
-      color: $main-color;
+      color: var(--back-color);
       font-size: 14px;
       font-weight: 500;
       text-transform: uppercase;
       &:hover {
-        color: $main-color;
+        color: var(--back-color);
       }
     }
   }

@@ -1,7 +1,9 @@
 .promo {
-  min-height: 650px;
+  min-height: 100vh;
   padding: 21px 0 93px 0;
-  background: url("../img/main.jpg") center (center/cover) no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("../img/main_bg.jpg")  
+              center center / cover no-repeat fixed;
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
     margin-top: 90px;
   }
   &__header {
-    color: #ffffff;
+    color: var(--color-text);
     font-size: 42px;
     font-weight: 700;
     text-transform: uppercase;
@@ -17,7 +19,7 @@
   }
   &__subheader {
     margin-top: 17px;
-    color: #ffffff;
+    color: var(--color-text);
     font-size: 24px;
     font-weight: 500;
     text-transform: uppercase;
@@ -32,7 +34,7 @@
   &__icon {
     width: 108px;
     text-align: center;
-    color: #ffffff;
+    color: var(--color-text);
     font-size: 14px;
     font-weight: 500;
     img {
@@ -43,11 +45,11 @@
   }
   &__link {
     margin-top: 18px;
-    color: #ffffff;
+    color: var(--color-text);
     font-size: 16px;
     font-weight: 500;
     a {
-      color: #ffffff;
+      color: var(--color-text);
       text-transform: uppercase;
       text-decoration: underline;
     }
