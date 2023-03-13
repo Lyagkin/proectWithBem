@@ -1,5 +1,8 @@
 .carousel {
   padding: 81px 0;
+  &__title {
+    display: none;
+  }
   &__inner {
     position: relative;
     width: 85%;
@@ -12,6 +15,9 @@
         max-width: 400px;
       }
     }
+  }
+  &__divider {
+    display: none;
   }
   .prev,
   .next {

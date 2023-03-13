@@ -1,4 +1,8 @@
 @media (max-width: 575px) {
+  .container {
+    width: auto;
+  }
+
   .promo {
     min-height: 400px;
     padding: 10px 15px 20px 15px;
@@ -29,22 +33,21 @@
       margin-top: 5px;
       font-size: 9px;
     }
-  }
-  .container {
-    width: auto;
-  }
-  .header {
-    align-items: flex-end;
-    &__logo {
-      width: 110px;
-    }
-    &__official {
-      display: none;
-    }
-    &__phone {
-      font-size: 9px;
+
+    .header {
+      align-items: flex-end;
+      &__logo {
+        width: 110px;
+      }
+      &__official {
+        display: none;
+      }
+      &__phone {
+        font-size: 9px;
+      }
     }
   }
+
   .button {
     width: 100px;
     height: 15px;
@@ -66,9 +69,10 @@
       font-size: 11px;
     }
   }
+
   .advantages {
     min-height: auto;
-    padding: 15px 20px 20px 20px;
+    padding: 50px 20px 50px 20px;
     &__wrapper {
       margin-top: 18px;
       flex-direction: column;
@@ -89,6 +93,7 @@
       text-align: center;
     }
   }
+
   .title {
     font-size: 20px;
     &_left {
@@ -101,6 +106,7 @@
       margin-bottom: 30px;
     }
   }
+
   .consultation {
     min-height: 400px;
     padding: 25px 15px;
@@ -121,6 +127,7 @@
       font-weight: 700;
     }
   }
+
   .feed-form {
     margin-top: 110px;
     width: 150px;
@@ -143,35 +150,60 @@
       }
     }
   }
+
   .carousel {
-    padding: 15px 15px;
+    padding: 50px 0px 50px 0px;
     margin-bottom: 0px;
-  }
-  .prev,
-  .next {
-    display: none;
-  }
-  .tns-item {
-    img {
-      max-width: 100%;
+    &__title {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0d0d0d;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 30px;
     }
-  }
-  .tns-nav {
-    margin: 10px auto;
-    text-align: center;
-    button {
-      background-color: #0d0d0d;
-      width: 20px;
-      height: 20px;
-      border-radius: 100%;
-      margin: 5px 5px;
+    &__inner {
+      padding-bottom: 15px;
     }
-    .tns-nav-active {
+    &__divider {
+      margin: 30px auto 30px auto;
+      display: block;
+      width: 50%;
+      height: 2px;
       background-color: var(--back-color);
     }
+    .prev,
+    .next {
+      display: none;
+    }
+    .tns-item {
+      img {
+        max-width: 100%;
+      }
+    }
+    // .tns-nav {
+    //   margin: 10px auto;
+    //   text-align: center;
+    //   button {
+    //     background-color: #0d0d0d;
+    //     width: 10px;
+    //     height: 10px;
+    //     border-radius: 100%;
+    //     margin: 5px 5px;
+    //   }
+    //   .tns-nav-active {
+    //     background-color: var(--back-color);
+    //   }
+    // }
   }
+
+
   .catalog {
-    padding-bottom: 20px;
+    padding-bottom: 80px;
+    .title {
+      margin-bottom: 40px;
+    }
     &__tabs {
       margin-top: 20px;
       flex-wrap: wrap;
@@ -209,6 +241,8 @@
       background-color: #0d0d0d;
     }
   }
+
+
   .reviews {
     &__clients {
       flex-wrap: wrap;
@@ -216,17 +250,17 @@
     &__descr {
       margin-bottom: 30px;
       flex-direction: column;
-      align-items: center;
+      // align-items: center;
     }
     &__img {
-      margin-right: 0px;
+      margin: 0 auto;
       img {
         width: auto;
         height: auto;
       }
     }
     &__text {
-      padding-right: 0px;
+      padding: 2px 20px;
       &__name {
         font-size: 13px;
         text-align: center;
@@ -240,10 +274,11 @@
         margin-top: 10px;
         font-size: 15px;
         line-height: 20px;
-        text-align: center;
+        text-align: justify;
       }
     }
   }
+
   .footer {
     height: auto;
     &__map {
@@ -273,6 +308,7 @@
       }
     }
   }
+  
   .overlay {
     .modal {
       width: 250px;

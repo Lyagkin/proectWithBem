@@ -8,10 +8,10 @@ const slider = tns({
   speed: 600,
   responsive: {
     320: {
-      nav: true,
+      nav: false,
       edgePadding: 20,
       gutter: 20,
-      items: 1,
+      items: 3,
     },
     768: {
       nav: false,
