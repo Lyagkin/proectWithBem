@@ -1,36 +1,84 @@
-const slider = tns({
-  container: ".carousel__inner",
-  items: 3,
-  slideBy: "page",
-  autoplay: false,
-  controls: false,
-  nav: false,
-  speed: 600,
-  responsive: {
-    320: {
-      nav: false,
-      edgePadding: 20,
-      gutter: 20,
-      items: 3,
-    },
-    768: {
-      nav: false,
-    },
-    1440: {
-      nav: false,
-    },
-    2560: {
-      nav: false,
-    },
-  },
-});
+// const slider = tns({
+//   container: ".carousel__inner",
+//   items: 2,
+//   slideBy: "page",
+//   autoplay: false,
+//   controls: false,
+//   nav: false,
+//   speed: 900,
+//   responsive: {
+//     320: {
+//       nav: false,
+//       edgePadding: 20,
+//       gutter: 20,
+//       items: 3,
+//     },
+//     768: {
+//       nav: false,
+//     },
+//     1440: {
+//       nav: false,
+//     },
+//     2560: {
+//       nav: false,
+//     },
+//   },
+// });
 
-document.querySelector(".prev").addEventListener("click", function () {
-  slider.goTo("prev");
-});
-document.querySelector(".next").addEventListener("click", function () {
-  slider.goTo("next");
-});
+// document.querySelector(".prev").addEventListener("click", function () {
+//   slider.goTo("prev");
+// });
+// document.querySelector(".next").addEventListener("click", function () {
+//   slider.goTo("next");
+// });
+
+                                                                 // SLIDER
+
+const slider = document.querySelector(".carousel__slider");
+const sliderImg = document.querySelectorAll(".carousel__inner_item");
+const sliderLine = document.querySelector(".carousel__inner");
+
+const btnSliderNext = document.querySelector(".next");
+const btnSliderPrev = document.querySelector(".prev");
+
+let sliderCount = 0;
+let sliderWidth = slider.offsetWidth;
+
+btnSliderNext.addEventListener("click", nextSlide);
+btnSliderPrev.addEventListener("click", prevSlide);
+
+function nextSlide() {
+  sliderCount++;
+
+  if (sliderCount >= sliderImg.length) {
+    sliderCount = 0;
+  }
+
+  rollSlider();
+}
+
+function prevSlide() {
+  sliderCount--;
+
+  if (sliderCount < 0) {
+    sliderCount = sliderImg.length - 1;
+ 
+  }
+
+  rollSlider();
+}
+
+function rollSlider() {
+  sliderLine.style.transform = `translateX(${-sliderCount * sliderWidth}px)`;
+}
+
+
+
+
+
+
+
+
 
 $(document).ready(function () {
   $("ul.catalog__tabs").on("click", "li:not(.catalog__tab_active)", function () {

@@ -3,18 +3,21 @@
   &__title {
     display: none;
   }
-  &__inner {
-    position: relative;
-    width: 85%;
+  &__slider {
+    width: 600px;
+    overflow: hidden;
     margin: 0 auto;
-    &_item {
-      width: 50%;
+    position: relative;
+  }
+  &__inner {
+    display: flex;
+    transition: all 1s;
       img {
+        width: 600px;
+        height: auto;
         display: block;
-        margin: 0 auto;
-        max-width: 400px;
+        object-fit: contain;
       }
-    }
   }
   &__divider {
     display: none;
@@ -36,11 +39,4 @@
     right: 0px;
     left: auto;
   }
-  // .tns-item {
-  //   img {
-  //     display: block;
-  //     margin: 0 auto;
-  //     max-width: 50%;
-  //   }
-  // }
 }
