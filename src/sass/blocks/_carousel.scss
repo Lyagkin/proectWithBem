@@ -4,23 +4,46 @@
     display: none;
   }
   &__slider {
-    width: 600px;
+    width: 550px;
     overflow: hidden;
     margin: 0 auto;
-    position: relative;
+
   }
   &__inner {
     display: flex;
     transition: all 1s;
-      img {
-        width: 600px;
-        height: auto;
-        display: block;
-        object-fit: contain;
-      }
+  }
+  &__item {
+    margin-left: 50px;
+    margin-right: 50px;
+    img {
+      max-width: 450px;
+      display: block;
+      object-fit: contain;
+    }
   }
   &__divider {
     display: none;
+  }
+  &__dots {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &__dot {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px solid #000;
+    border-radius: 30%;
+    transition: 0.7s all;
+    &:hover {
+      background-color: var(--back-color);
+    }
   }
   .prev,
   .next {
@@ -39,4 +62,9 @@
     right: 0px;
     left: auto;
   }
+}
+
+.active {
+  background-color: var(--back-color);
+  border: none;
 }

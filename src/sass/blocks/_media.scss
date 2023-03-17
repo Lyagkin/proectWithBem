@@ -163,8 +163,18 @@
       text-transform: uppercase;
       margin-bottom: 30px;
     }
+    &__slider {
+      width: 320px;
+    }
     &__inner {
       padding-bottom: 15px;
+    }
+    &__item {
+      margin-left: 0;
+      margin-right: 0;
+      img {
+        max-width: 320px;
+      }
     }
     &__divider {
       margin: 30px auto 30px auto;
@@ -177,25 +187,6 @@
     .next {
       display: none;
     }
-    .tns-item {
-      img {
-        max-width: 100%;
-      }
-    }
-    // .tns-nav {
-    //   margin: 10px auto;
-    //   text-align: center;
-    //   button {
-    //     background-color: #0d0d0d;
-    //     width: 10px;
-    //     height: 10px;
-    //     border-radius: 100%;
-    //     margin: 5px 5px;
-    //   }
-    //   .tns-nav-active {
-    //     background-color: var(--back-color);
-    //   }
-    // }
   }
 
 
