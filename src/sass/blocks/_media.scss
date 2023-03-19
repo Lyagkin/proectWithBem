@@ -172,16 +172,10 @@
       margin-right: 0;
     }
     &__dot {
-      width: 15px;
+      width: 10px;
       height: 15px;
-      margin-right: 5px;
-      margin-left: 5px;
-      border: 1px solid #000;
-      border-radius: 30%;
-      transition: 0.7s all;
-      &:hover {
-        background-color: var(--back-color);
-      }
+      margin-right: 2px;
+      margin-left: 2px;
     }
     &__divider {
       margin: 30px auto 30px auto;
