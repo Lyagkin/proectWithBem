@@ -4,7 +4,7 @@
     display: none;
   }
   &__slider {
-    width: 550px;
+    max-width: 650px;
     overflow: hidden;
     margin: 0 auto;
 
@@ -14,10 +14,7 @@
     transition: all 1s;
   }
   &__item {
-    margin-left: 50px;
-    margin-right: 50px;
     img {
-      max-width: 450px;
       display: block;
       object-fit: contain;
     }
@@ -26,8 +23,10 @@
     display: none;
   }
   &__dots {
+    width: 260px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: absolute;
     bottom: -20px;
     left: 50%;

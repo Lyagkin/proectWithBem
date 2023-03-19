@@ -163,17 +163,24 @@
       text-transform: uppercase;
       margin-bottom: 30px;
     }
-    &__slider {
-      width: 320px;
-    }
     &__inner {
       padding-bottom: 15px;
+      transition: all 0.3s;
     }
     &__item {
       margin-left: 0;
       margin-right: 0;
-      img {
-        max-width: 320px;
+    }
+    &__dot {
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      margin-left: 5px;
+      border: 1px solid #000;
+      border-radius: 30%;
+      transition: 0.7s all;
+      &:hover {
+        background-color: var(--back-color);
       }
     }
     &__divider {
