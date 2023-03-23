@@ -50,17 +50,6 @@ function init () { // функция изначальных установок
 
 init();
 
-
-
-
-
-
-
-
-
-
-
-
 function moveSlide(sliderCount) { // функция расчета перемещения слайдов
 
   sliderLine.style.transform = `translateX(${-sliderCount * sliderWidth}px)`; // смещаем блок со всеми слайдами на ширину блока слайдера - так как он вмещает только один слайд - это я установил изначально в стилях. Направление смещения зависит от переданного атрибута 'sliderCount' - изначально он будет в значении 0 - то есть на странице показан первый слайд из массива. Он указан со знаком минус - это нужно для смещения слайдов влево или вправо - логика описана в функция след слайда и пред. Далее оно умножается на ширину блока слайдера и один слайд смещается - другой его заменяет. Это значение будет соответствовать индексу слайдов и меняться в функциях повешенных на кнопки вправо/влево и кнопки/точки
@@ -90,10 +79,6 @@ function prevSlide() { // функция показа пред слайда
   createActiveDot(sliderCounter);
 }
 
-
-
-
-
 dotsContainer.addEventListener("click", (e) => { // обращаюсь к блоку со всеми кнопками-точками - это нужно, чтобы запустить дилегирование событий, так как точек изначально в верстке нет, то есть при клике на родителя и проверяю содержит ли элемент на который совершен клик класс точки-кнопки, если да, то получаем в переменную 'index' значение data атрибута - там лежит индекс точки - "индекс точки такой же как индекс слайда" - далее кладу это значение переменной-счетчику, и с ним запускаю функции показа активной точки и рассчет перемещения слайдов - в итоге по клику на любую кнопку-точку мы смещаемся к такому же по порядку слайду и меняем значение счетчика, чтобы это измененное значение передалось в функции повешенные на кнопки-стрелки
   const target = e.target;
   
@@ -122,50 +107,7 @@ window.addEventListener("resize", () => {
 ////////////////////////////////////////////////////////////////////////
 
 $(document).ready(function () {
-  $("ul.catalog__tabs").on("click", "li:not(.catalog__tab_active)", function () {
-    $(this)
-      .addClass("catalog__tab_active")
-      .siblings()
-      .removeClass("catalog__tab_active")
-      .closest("div.container")
-      .find("div.catalog__content")
-      .removeClass("catalog__content_active")
-      .eq($(this).index())
-      .addClass("catalog__content_active");
-  });
-
-  function toggleSlide(item) {
-    $(item).each(function (i) {
-      $(this).on("click", function (e) {
-        e.preventDefault();
-        $(".catalog-item__content").eq(i).toggleClass("catalog-item__content_active");
-        $(".catalog-item__list").eq(i).toggleClass("catalog-item__list_active");
-      });
-    });
-  }
-
-  toggleSlide(".catalog-item__link");
-  toggleSlide(".catalog-item__back");
-
   // Modal
-
-  $("[data-modal=consultation]").on("click", function () {
-    // по дата атрибуту и событию клика на этот элемент -элементам со след классами и id задаем класс медленного появления
-    $(".overlay, #consultation").fadeIn("slow");
-  });
-
-  $(".modal__close").on("click", function () {
-    // по дата атрибуту и событию клика на этот элемент -элементам со след классами и id задаем класс медленного исчезновения
-    $(".overlay, #consultation, #order, #thanks").fadeOut("slow");
-  });
-
-  $(".button_mini").each(function (i) {
-    // для всех элементов с этим классом пишем функцию, которая получает аргумент порядкового индекса списка элементов - каждому элементу с этим классом по клику - у след элементов по id и классам в их текст вставляет текст из след элемента по классу и по индексу и медленно показывает при этом их на странице
-    $(this).on("click", function () {
-      $("#order .modal__descr").text($(".catalog-item__subtitle").eq(i).text());
-      $(".overlay, #order").fadeIn("slow");
-    });
-  });
 
   function validateForms(form) {
     //функция валидации форм
@@ -240,4 +182,150 @@ $(document).ready(function () {
   });
 
   new WOW().init();
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const catalogParents = document.querySelectorAll(".catalog__content");
+  const catalogItem = document.querySelectorAll(".catalog-item__content");
+  const listItem = document.querySelectorAll(".catalog-item__list");
+  const listOfLinksLook = document.querySelectorAll(".catalog-item__link");
+  const listOfLinksBack = document.querySelectorAll(".catalog-item__back");
+  const listOfButtonBy = document.querySelectorAll(".button_mini");
+
+  const overlayForModal = document.querySelector(".overlay");
+  const modalOrder = overlayForModal.querySelector("#order");
+  const modalConsultation = overlayForModal.querySelector("#consultation");
+  const modalThanks = overlayForModal.querySelector("#thanks");
+
+
+  function showAllCatalogItem() {
+    catalogItem.forEach(item => item.classList.add("catalog-item__content_active"));
+
+    listItem.forEach(item => item.classList.remove("catalog-item__list_active"));
+  }
+
+  showAllCatalogItem();
+
+
+  function showListItem(i) {
+    listItem[i].classList.add("catalog-item__list_active");
+
+    catalogItem[i].classList.remove("catalog-item__content_active");
+  }
+
+
+  function showCatalogItem(i) {
+    catalogItem[i].classList.add("catalog-item__content_active");
+
+    listItem[i].classList.remove("catalog-item__list_active");
+  }
+
+  function hideModalConsultation() {
+    overlayForModal.classList.add("fadeOut");
+
+    overlayForModal.classList.remove("activeModal", "fadeIn");
+
+    modalConsultation.classList.remove("fadeIn"); 
+    modalConsultation.classList.add("fadeOut"); 
+
+    modalConsultation.style = "display:none";
+  }
+
+  function hideModalToBy() {
+    overlayForModal.classList.add("fadeOut");
+
+    overlayForModal.classList.remove("activeModal", "fadeIn");
+
+    modalOrder.classList.remove("fadeIn"); 
+    modalOrder.classList.add("fadeOut"); 
+
+    modalOrder.style = "display:none";
+  }
+
+
+  document.querySelectorAll(".modal__close").forEach(item => {
+    item.addEventListener("click", () => {
+      hideModalToBy();
+      hideModalConsultation();
+    });
+  });
+
+  overlayForModal.addEventListener("click", (e) => {
+    if(e.target.classList.contains("overlay")) {
+      hideModalToBy();
+      hideModalConsultation();
+    }
+  })
+
+  function showTargetText(i) {
+
+    let modalTextDescription = modalOrder.querySelector(".modal__descr");
+
+    let catalogProductDescription = document.querySelectorAll(".catalog-item__subtitle")[i];
+
+    modalTextDescription.textContent = catalogProductDescription.textContent;
+  }
+
+  function showModalConsultation(i) {
+    overlayForModal.classList.remove("fadeOut");
+
+    overlayForModal.classList.add("activeModal", "fadeIn");
+
+    modalConsultation.classList.remove("fadeOut");
+    modalConsultation.classList.add("fadeIn");  
+
+    modalConsultation.style.cssText = `display: block`;
+  }
+
+  document.querySelectorAll("[data-modal=consultation]").forEach((button) => {
+    button.addEventListener("click", () => {
+      showModalConsultation();
+    })
+  })
+
+  function showModalToBy(i) {
+    overlayForModal.classList.remove("fadeOut");
+
+    overlayForModal.classList.add("activeModal", "fadeIn");
+
+    modalOrder.classList.remove("fadeOut");
+    modalOrder.classList.add("fadeIn");  
+
+    modalOrder.style.cssText = `display: block`;
+  }
+
+
+
+  catalogParents.forEach(catalogElement => {
+    catalogElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      
+      let target = e.target;
+
+      if (target.classList.contains("catalog-item__link")) {
+        listOfLinksLook.forEach((link, linkIndex) => {
+          if (link === target) {
+            showListItem(linkIndex);
+          }
+        });
+      }
+
+      if (target.classList.contains("catalog-item__back")) {
+        listOfLinksBack.forEach((link, linkIndex) => {
+          if (link === target) {
+            showCatalogItem(linkIndex);
+          }
+        });
+      }
+
+      if (target.classList.contains("button_mini")) {
+        listOfButtonBy.forEach((button, buttonIndex) => {
+          if (button === target) {
+            showModalToBy();
+            showTargetText(buttonIndex);
+          }
+        });
+      }
+    })
+  })
 });
