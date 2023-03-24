@@ -190,12 +190,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const listItem = document.querySelectorAll(".catalog-item__list");
   const listOfLinksLook = document.querySelectorAll(".catalog-item__link");
   const listOfLinksBack = document.querySelectorAll(".catalog-item__back");
-  const listOfButtonBy = document.querySelectorAll(".button_mini");
+  const listOfButtonBuyProduct = document.querySelectorAll(".button_mini");
 
   const overlayForModal = document.querySelector(".overlay");
   const modalOrder = overlayForModal.querySelector("#order");
   const modalConsultation = overlayForModal.querySelector("#consultation");
-  const modalThanks = overlayForModal.querySelector("#thanks");
 
 
   function showAllCatalogItem() {
@@ -221,80 +220,78 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function hideModalConsultation() {
-    overlayForModal.classList.add("fadeOut");
-
-    overlayForModal.classList.remove("activeModal", "fadeIn");
-
-    modalConsultation.classList.remove("fadeIn"); 
-    modalConsultation.classList.add("fadeOut"); 
-
-    modalConsultation.style = "display:none";
+    fadeOut(overlayForModal);
+    fadeOut(modalConsultation);
   }
 
-  function hideModalToBy() {
-    overlayForModal.classList.add("fadeOut");
-
-    overlayForModal.classList.remove("activeModal", "fadeIn");
-
-    modalOrder.classList.remove("fadeIn"); 
-    modalOrder.classList.add("fadeOut"); 
-
-    modalOrder.style = "display:none";
+  function hideModalProduct() {
+    fadeOut(overlayForModal);
+    fadeOut(modalOrder);
   }
 
+  const closeModalButton = document.querySelectorAll(".modal__close");
 
-  document.querySelectorAll(".modal__close").forEach(item => {
+  closeModalButton.forEach(item => {
     item.addEventListener("click", () => {
-      hideModalToBy();
+      hideModalProduct();
       hideModalConsultation();
     });
   });
 
   overlayForModal.addEventListener("click", (e) => {
     if(e.target.classList.contains("overlay")) {
-      hideModalToBy();
+      hideModalProduct();
       hideModalConsultation();
     }
   })
 
-  function showTargetText(i) {
-
+  function showProductName(i) {
     let modalTextDescription = modalOrder.querySelector(".modal__descr");
-
     let catalogProductDescription = document.querySelectorAll(".catalog-item__subtitle")[i];
-
     modalTextDescription.textContent = catalogProductDescription.textContent;
   }
 
-  function showModalConsultation(i) {
-    overlayForModal.classList.remove("fadeOut");
-
-    overlayForModal.classList.add("activeModal", "fadeIn");
-
-    modalConsultation.classList.remove("fadeOut");
-    modalConsultation.classList.add("fadeIn");  
-
-    modalConsultation.style.cssText = `display: block`;
+  function showModalConsultation() {
+    fadeIn(overlayForModal);
+    fadeIn(modalConsultation);
   }
 
-  document.querySelectorAll("[data-modal=consultation]").forEach((button) => {
+  const buttonConsultation = document.querySelectorAll("[data-modal=consultation]");
+
+  buttonConsultation.forEach((button) => {
     button.addEventListener("click", () => {
       showModalConsultation();
     })
   })
 
-  function showModalToBy(i) {
-    overlayForModal.classList.remove("fadeOut");
-
-    overlayForModal.classList.add("activeModal", "fadeIn");
-
-    modalOrder.classList.remove("fadeOut");
-    modalOrder.classList.add("fadeIn");  
-
-    modalOrder.style.cssText = `display: block`;
+  function showModalProduct() {
+    fadeIn(overlayForModal);
+    fadeIn(modalOrder);
   }
 
+  function fadeIn(el, display = "block") { // код из сети
+    el.style.opacity = 0;
+    el.style.display = display;
+    (function fade() {
+        let val = parseFloat(el.style.opacity);
+        if (!((val += .1) > 1)) {
+          console.log(val);
+            el.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
+}
 
+  function fadeOut(el) { // код из сети
+    el.style.opacity = 1;
+    (function fade() {
+        if ((el.style.opacity -= .1) < 0) {
+            el.style.display = "none";
+        } else {
+            requestAnimationFrame(fade);
+        }
+    })();
+};
 
   catalogParents.forEach(catalogElement => {
     catalogElement.addEventListener("click", (e) => {
@@ -319,13 +316,47 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       if (target.classList.contains("button_mini")) {
-        listOfButtonBy.forEach((button, buttonIndex) => {
+        listOfButtonBuyProduct.forEach((button, buttonIndex) => {
           if (button === target) {
-            showModalToBy();
-            showTargetText(buttonIndex);
+            showModalProduct();
+            showProductName(buttonIndex);
           }
         });
       }
     })
   })
+
+  // Табы
+  const parentOfTabs = document.querySelector(".catalog__tabs");
+  const tabs = document.querySelectorAll(".catalog__tab");
+  const tabsContent = document.querySelectorAll(".catalog__content");
+
+  function hideContent() {
+    tabs.forEach(tab => tab.classList.remove("catalog__tab_active"));
+
+    tabsContent.forEach(content => {
+      content.classList.remove("catalog__content_active", "fade");
+    });
+  }
+
+  function showActiveContent(i = 0) {
+    tabs[i].classList.add("catalog__tab_active");
+
+    tabsContent[i].classList.add("catalog__content_active", "fade");
+  }
+
+  showActiveContent();
+
+  parentOfTabs.addEventListener("click", (e) => {
+    let target = e.target;
+
+    if (target && target.parentElement.classList.contains("catalog__tab")) {
+      tabs.forEach((tab, i) => {
+        if(tab === target.parentElement) {
+          hideContent();
+          showActiveContent(i);        
+        }
+      })
+    }
+  });
 });
